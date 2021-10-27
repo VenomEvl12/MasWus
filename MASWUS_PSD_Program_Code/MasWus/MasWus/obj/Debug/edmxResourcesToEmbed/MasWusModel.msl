@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MasWusModelStoreContainer" CdmEntityContainer="MasWusEntities">
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="MasWusModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="MasWusModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Drafts">
+      <EntityTypeMapping TypeName="MasWusModel.Draft">
+        <MappingFragment StoreEntitySet="Draft">
+          <ScalarProperty Name="ThreadDescription" ColumnName="ThreadDescription" />
+          <ScalarProperty Name="ThreadTitle" ColumnName="ThreadTitle" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="DraftId" ColumnName="DraftId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ThreadImages">
+      <EntityTypeMapping TypeName="MasWusModel.ThreadImage">
+        <MappingFragment StoreEntitySet="ThreadImage">
+          <ScalarProperty Name="ImageData" ColumnName="ImageData" />
+          <ScalarProperty Name="ThreadId" ColumnName="ThreadId" />
+          <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="MasWusModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Replies">
+      <EntityTypeMapping TypeName="MasWusModel.Reply">
+        <MappingFragment StoreEntitySet="Reply">
+          <ScalarProperty Name="replyDescription" ColumnName="replyDescription" />
+          <ScalarProperty Name="threadID" ColumnName="threadID" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="replyID" ColumnName="replyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Threads">
+      <EntityTypeMapping TypeName="MasWusModel.Thread">
+        <MappingFragment StoreEntitySet="Thread">
+          <ScalarProperty Name="ThreadView" ColumnName="ThreadView" />
+          <ScalarProperty Name="ThreadUpVote" ColumnName="ThreadUpVote" />
+          <ScalarProperty Name="ThreadDateCreated" ColumnName="ThreadDateCreated" />
+          <ScalarProperty Name="ThreadDescription" ColumnName="ThreadDescription" />
+          <ScalarProperty Name="ThreadTitle" ColumnName="ThreadTitle" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="ThreadId" ColumnName="ThreadId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UpVoteValidations">
+      <EntityTypeMapping TypeName="MasWusModel.UpVoteValidation">
+        <MappingFragment StoreEntitySet="UpVoteValidation">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="ThreadID" ColumnName="ThreadID" />
+          <ScalarProperty Name="ValidationID" ColumnName="ValidationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

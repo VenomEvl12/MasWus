@@ -1,0 +1,85 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainMaster.master.cs" Inherits="MasWus.View.Main.MainMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>MasWus</title>
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Content/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="MainMaster.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <script src="<%= ResolveUrl("~/Scripts/jquery-3.0.0.js") %>")></script>
+    <script src="<%= ResolveUrl("~/View/Main/MainMaster.js") %>")></script>
+    <form class="container-fluid p-0" id="form1" runat="server">
+                <div id="header-item">
+                    <div class="logo">
+                        <a href="/View/Main/Home/HomePage.aspx?category=All">
+                            <span>
+                                <asp:Image runat="server" CssClass="image" ImageUrl="~/Assets/MasWus.png"/>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="button">
+                        <% if (Session["User"] != null)
+                            { %>
+                        <a href="/View/Main/ManageThread/EditThread/EditThread.aspx" class="redirect">
+                            <div class="col-auto">
+                                <h5>Edit Thread</h5>
+                            </div>
+                        </a>
+                        <a href="/View/Main/ManageThread/CreateThread/CreateThread.aspx" class="redirect">
+                            <div class="col-auto">
+                                <h5>Create Thread</h5>
+                            </div>
+                        </a>
+                        <asp:Button ID="btnLogout" style="display: none" OnClick="BtnLogout" ClientIDMode="static" runat="server"/>
+                        <div class="col-auto" onclick="BtnLogout();">
+                            <h5>Logout</h5>
+                        </div>
+                        <%}else{ %>
+                        <a href="/View/Login/Login.aspx" class="redirect">
+                            <div class="col-auto">
+                                <h5>Login</h5>
+                            </div>
+                        </a>
+                         <%} %>
+                    </div>
+                </div>
+                <div id="header-categories">
+                    <a href="/View/Main/home/HomePage.aspx?Category=Game" class="redirect">
+                        <div>
+                           <h6>Game</h6>
+                        </div>
+                    </a>
+                    <a href="/View/Main/home/HomePage.aspx?Category=Tech" class="redirect">
+                        <div>
+                            <h6>Tech</h6>
+                        </div>
+                    </a>
+                    <a href="/View/Main/home/HomePage.aspx?Category=Animal" class="redirect">
+                        <div>
+                            <h6>Animal</h6>
+                        </div>
+                    </a>
+                    <a href="/View/Main/home/HomePage.aspx?Category=Otomotive" class="redirect">
+                        <div>
+                            <h6>Otomotive</h6>
+                        </div>
+                    </a>
+                    <a href="/View/Main/home/HomePage.aspx?Category=Other" class="redirect">
+                        <div>
+                            <h6>Other</h6>
+                        </div>
+                    </a>
+                </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

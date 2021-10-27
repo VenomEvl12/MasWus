@@ -1,0 +1,99 @@
+﻿body {
+    background-color: rgb(235, 235, 235);
+}
+
+.container {
+    width: 45%;
+}
+
+.thread-content-container {
+    background-color: white;
+    margin-top: 10vh;
+}
+
+.thread-header{
+    display: flex;
+    justify-content: flex-start;
+    padding: 2%;
+    border-bottom: 1px solid rgb(200, 200, 200);
+}
+
+.thread-content {
+    text-align: justify;
+    padding: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-bottom: 1px solid rgb(200, 200, 200);
+}
+
+.thread-footer{
+    padding: 2%;
+    color: rgb(140, 140, 140);
+}
+
+.thread-reply-container{
+    margin-top: 5vh;
+}
+
+.thread-reply-header{
+    background-color: white;
+    padding: 2%;
+}
+
+.reply-input {
+    margin-top: 2vh;
+}
+
+.thread-total-counter {
+    border-bottom: 1px solid rgb(220, 220, 220);
+}
+
+.reply-input{
+    display: flex;
+}
+
+.btn{
+    margin-left: 1vw;
+    width: 6vw;
+}
+
+.reply{
+    background-color: white;
+    padding: 2%;
+    margin-top: 2vh;
+}
+
+.reply > .reply-header {
+    padding-bottom: 1vh;
+    border-bottom: 1px solid rgb(220, 220, 220);
+}
+
+.reply > .reply-content{
+    padding-top: 1vh;
+}
+
+.thread-title{
+    padding: 2% 2% 1% 2%;
+    border-bottom: 1px solid rgb(220, 220, 220);
+}
+
+.reply-container {
+    margin-bottom: 4vh;
+}
+
+.carousel-item{
+    padding-bottom: 2vh;
+}
+
+.image-e {
+    height: 600px;
+}
+
+#image-carousel{
+    padding: 0% 10% 0 10%;
+}
+
+.attributes {
+    display: flex;
+    justify-content: space-between;
+}

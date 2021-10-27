@@ -1,0 +1,87 @@
+﻿body {
+    overflow: hidden;
+    height: 80vh;
+}
+
+#container-e {
+    background-color: rgb(240, 240, 240);
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+}
+
+.edit-container{
+    background-color: white;
+    height: 90vh;
+    overflow-y: scroll;
+}
+
+.thread-list-container {
+    background-color: rgb(200, 200, 200);
+    position:absolute;
+    overflow-y: scroll;
+    left: 66.66666%;
+    height: 90vh;
+}
+
+.edit-container-margin {
+    padding: 0% 2% 2% 2%;
+}
+
+.description-input {
+    resize: none;
+}
+
+.edit-label {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.thread-list-margin{
+    padding: 2% 2% 2% 2%;
+}
+
+.thread-container-margin {
+    margin-top: 1vh;
+    margin-bottom: 2vh;
+}
+
+.thread-container {
+    background: white;
+    padding: 3%;
+    transition: ease-in-out 0.5s;
+}
+
+.thread-container:hover {
+    cursor: pointer;
+    background-color: rgb(230, 230, 230);
+}
+
+.image-size{
+    width: 300px;
+    height: 300px;
+}
+
+.edit-container-image{
+ 
+}
+
+.image-container {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.btn-submit{
+    margin-top: 2vh;
+    font-size: 20px;
+    width: 100%
+}
+
+.button-delete{
+    margin-left: 1vw;
+    padding: 1vh 2vw 1vh 2vw;
+}
+
+#black {
+    color: black;
+}

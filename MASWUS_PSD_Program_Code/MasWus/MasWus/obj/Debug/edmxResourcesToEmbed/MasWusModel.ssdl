@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MasWusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Draft">
+    <Key>
+      <PropertyRef Name="DraftId" />
+    </Key>
+    <Property Name="DraftId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ThreadTitle" Type="varchar(max)" Nullable="false" />
+    <Property Name="ThreadDescription" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reply">
+    <Key>
+      <PropertyRef Name="replyID" />
+    </Key>
+    <Property Name="replyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="threadID" Type="int" Nullable="false" />
+    <Property Name="replyDescription" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="RoleName" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Thread">
+    <Key>
+      <PropertyRef Name="ThreadId" />
+    </Key>
+    <Property Name="ThreadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ThreadTitle" Type="varchar(max)" Nullable="false" />
+    <Property Name="ThreadDescription" Type="varchar(max)" Nullable="false" />
+    <Property Name="ThreadDateCreated" Type="datetime" Nullable="false" />
+    <Property Name="ThreadUpVote" Type="int" Nullable="false" />
+    <Property Name="ThreadView" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ThreadImage">
+    <Key>
+      <PropertyRef Name="ImageId" />
+    </Key>
+    <Property Name="ImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ThreadId" Type="int" Nullable="false" />
+    <Property Name="ImageData" Type="varbinary(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UpVoteValidation">
+    <Key>
+      <PropertyRef Name="ValidationID" />
+    </Key>
+    <Property Name="ValidationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ThreadID" Type="int" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="status" Type="int" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="AccountName" Type="varchar(max)" Nullable="false" />
+    <Property Name="Username" Type="varchar(max)" Nullable="false" />
+    <Property Name="Password" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Draft__CategoryI__49C3F6B7">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Draft" Type="Self.Draft" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Draft">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Draft__UserId__4AB81AF0">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Draft" Type="Self.Draft" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Draft">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reply__threadID__6383C8BA">
+    <End Role="Thread" Type="Self.Thread" Multiplicity="1" />
+    <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thread">
+        <PropertyRef Name="ThreadId" />
+      </Principal>
+      <Dependent Role="Reply">
+        <PropertyRef Name="threadID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reply__userID__628FA481">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Reply">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Thread__Category__3F466844">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Thread" Type="Self.Thread" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Thread">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Thread__UserId__403A8C7D">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Thread" Type="Self.Thread" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Thread">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ThreadIma__Threa__4316F928">
+    <End Role="Thread" Type="Self.Thread" Multiplicity="1" />
+    <End Role="ThreadImage" Type="Self.ThreadImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thread">
+        <PropertyRef Name="ThreadId" />
+      </Principal>
+      <Dependent Role="ThreadImage">
+        <PropertyRef Name="ThreadId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UpVoteVal__Threa__6FE99F9F">
+    <End Role="Thread" Type="Self.Thread" Multiplicity="1" />
+    <End Role="UpVoteValidation" Type="Self.UpVoteValidation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thread">
+        <PropertyRef Name="ThreadId" />
+      </Principal>
+      <Dependent Role="UpVoteValidation">
+        <PropertyRef Name="ThreadID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UpVoteVal__userI__70DDC3D8">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UpVoteValidation" Type="Self.UpVoteValidation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UpVoteValidation">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User__RoleId__38996AB5">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MasWusModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Draft" EntityType="Self.Draft" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reply" EntityType="Self.Reply" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Thread" EntityType="Self.Thread" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ThreadImage" EntityType="Self.ThreadImage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UpVoteValidation" EntityType="Self.UpVoteValidation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Draft__CategoryI__49C3F6B7" Association="Self.FK__Draft__CategoryI__49C3F6B7">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Draft" EntitySet="Draft" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Draft__UserId__4AB81AF0" Association="Self.FK__Draft__UserId__4AB81AF0">
+      <End Role="User" EntitySet="User" />
+      <End Role="Draft" EntitySet="Draft" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reply__threadID__6383C8BA" Association="Self.FK__Reply__threadID__6383C8BA">
+      <End Role="Thread" EntitySet="Thread" />
+      <End Role="Reply" EntitySet="Reply" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reply__userID__628FA481" Association="Self.FK__Reply__userID__628FA481">
+      <End Role="User" EntitySet="User" />
+      <End Role="Reply" EntitySet="Reply" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Thread__Category__3F466844" Association="Self.FK__Thread__Category__3F466844">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Thread" EntitySet="Thread" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Thread__UserId__403A8C7D" Association="Self.FK__Thread__UserId__403A8C7D">
+      <End Role="User" EntitySet="User" />
+      <End Role="Thread" EntitySet="Thread" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ThreadIma__Threa__4316F928" Association="Self.FK__ThreadIma__Threa__4316F928">
+      <End Role="Thread" EntitySet="Thread" />
+      <End Role="ThreadImage" EntitySet="ThreadImage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UpVoteVal__Threa__6FE99F9F" Association="Self.FK__UpVoteVal__Threa__6FE99F9F">
+      <End Role="Thread" EntitySet="Thread" />
+      <End Role="UpVoteValidation" EntitySet="UpVoteValidation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UpVoteVal__userI__70DDC3D8" Association="Self.FK__UpVoteVal__userI__70DDC3D8">
+      <End Role="User" EntitySet="User" />
+      <End Role="UpVoteValidation" EntitySet="UpVoteValidation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__RoleId__38996AB5" Association="Self.FK__User__RoleId__38996AB5">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

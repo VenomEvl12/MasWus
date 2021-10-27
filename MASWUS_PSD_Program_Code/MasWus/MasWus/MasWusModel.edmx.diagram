@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fb59b24e080e48f8b240491d330efd43" Name="Diagram1">
+        <EntityTypeShape EntityType="MasWusModel.Role" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MasWusModel.Category" Width="1.5" PointX="0.75" PointY="7.375" />
+        <EntityTypeShape EntityType="MasWusModel.Draft" Width="1.5" PointX="5.625" PointY="3.875" />
+        <EntityTypeShape EntityType="MasWusModel.ThreadImage" Width="1.5" PointX="10.875" PointY="4.125" />
+        <AssociationConnector Association="MasWusModel.FK__Draft__CategoryI__49C3F6B7" />
+        <EntityTypeShape EntityType="MasWusModel.User" Width="1.5" PointX="3" PointY="2.25" />
+        <AssociationConnector Association="MasWusModel.FK__Draft__UserId__4AB81AF0" />
+        <AssociationConnector Association="MasWusModel.FK__User__RoleId__38996AB5" />
+        <EntityTypeShape EntityType="MasWusModel.Reply" Width="1.5" PointX="8.5" PointY="5.25" />
+        <EntityTypeShape EntityType="MasWusModel.Thread" Width="1.5" PointX="5.25" PointY="7" />
+        <AssociationConnector Association="MasWusModel.FK__Thread__Category__3F466844" />
+        <AssociationConnector Association="MasWusModel.FK__Reply__threadID__6383C8BA" />
+        <AssociationConnector Association="MasWusModel.FK__Reply__userID__628FA481" />
+        <AssociationConnector Association="MasWusModel.FK__Thread__UserId__403A8C7D" />
+        <AssociationConnector Association="MasWusModel.FK__ThreadIma__Threa__4316F928" />
+        <EntityTypeShape EntityType="MasWusModel.UpVoteValidation" Width="1.5" PointX="7.5" PointY="8.25" />
+        <AssociationConnector Association="MasWusModel.FK__UpVoteVal__Threa__6FE99F9F" />
+        <AssociationConnector Association="MasWusModel.FK__UpVoteVal__userI__70DDC3D8" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

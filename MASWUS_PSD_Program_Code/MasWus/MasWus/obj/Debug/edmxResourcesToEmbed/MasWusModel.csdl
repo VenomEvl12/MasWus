@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MasWusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="MasWusModel.FK__User__RoleId__38996AB5" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityContainer Name="MasWusEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Categories" EntityType="MasWusModel.Category" />
+    <EntitySet Name="Drafts" EntityType="MasWusModel.Draft" />
+    <EntitySet Name="ThreadImages" EntityType="MasWusModel.ThreadImage" />
+    <AssociationSet Name="FK__Draft__CategoryI__49C3F6B7" Association="MasWusModel.FK__Draft__CategoryI__49C3F6B7">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Draft" EntitySet="Drafts" />
+    </AssociationSet>
+    <EntitySet Name="Users" EntityType="MasWusModel.User" />
+    <AssociationSet Name="FK__Draft__UserId__4AB81AF0" Association="MasWusModel.FK__Draft__UserId__4AB81AF0">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Draft" EntitySet="Drafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__RoleId__38996AB5" Association="MasWusModel.FK__User__RoleId__38996AB5">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="Replies" EntityType="MasWusModel.Reply" />
+    <EntitySet Name="Threads" EntityType="MasWusModel.Thread" />
+    <AssociationSet Name="FK__Thread__Category__3F466844" Association="MasWusModel.FK__Thread__Category__3F466844">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Thread" EntitySet="Threads" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reply__threadID__6383C8BA" Association="MasWusModel.FK__Reply__threadID__6383C8BA">
+      <End Role="Thread" EntitySet="Threads" />
+      <End Role="Reply" EntitySet="Replies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reply__userID__628FA481" Association="MasWusModel.FK__Reply__userID__628FA481">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Reply" EntitySet="Replies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Thread__UserId__403A8C7D" Association="MasWusModel.FK__Thread__UserId__403A8C7D">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Thread" EntitySet="Threads" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ThreadIma__Threa__4316F928" Association="MasWusModel.FK__ThreadIma__Threa__4316F928">
+      <End Role="Thread" EntitySet="Threads" />
+      <End Role="ThreadImage" EntitySet="ThreadImages" />
+    </AssociationSet>
+    <EntitySet Name="UpVoteValidations" EntityType="MasWusModel.UpVoteValidation" />
+    <AssociationSet Name="FK__UpVoteVal__Threa__6FE99F9F" Association="MasWusModel.FK__UpVoteVal__Threa__6FE99F9F">
+      <End Role="Thread" EntitySet="Threads" />
+      <End Role="UpVoteValidation" EntitySet="UpVoteValidations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UpVoteVal__userI__70DDC3D8" Association="MasWusModel.FK__UpVoteVal__userI__70DDC3D8">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UpVoteValidation" EntitySet="UpVoteValidations" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Drafts" Relationship="MasWusModel.FK__Draft__CategoryI__49C3F6B7" FromRole="Category" ToRole="Draft" />
+    <NavigationProperty Name="Threads" Relationship="MasWusModel.FK__Thread__Category__3F466844" FromRole="Category" ToRole="Thread" />
+  </EntityType>
+  <EntityType Name="Draft">
+    <Key>
+      <PropertyRef Name="DraftId" />
+    </Key>
+    <Property Name="DraftId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ThreadTitle" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ThreadDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Category" Relationship="MasWusModel.FK__Draft__CategoryI__49C3F6B7" FromRole="Draft" ToRole="Category" />
+    <NavigationProperty Name="User" Relationship="MasWusModel.FK__Draft__UserId__4AB81AF0" FromRole="Draft" ToRole="User" />
+  </EntityType>
+  <EntityType Name="ThreadImage">
+    <Key>
+      <PropertyRef Name="ImageId" />
+    </Key>
+    <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ThreadId" Type="Int32" Nullable="false" />
+    <Property Name="ImageData" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Thread" Relationship="MasWusModel.FK__ThreadIma__Threa__4316F928" FromRole="ThreadImage" ToRole="Thread" />
+  </EntityType>
+  <Association Name="FK__Draft__CategoryI__49C3F6B7">
+    <End Type="MasWusModel.Category" Role="Category" Multiplicity="1" />
+    <End Type="MasWusModel.Draft" Role="Draft" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Draft">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="AccountName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Drafts" Relationship="MasWusModel.FK__Draft__UserId__4AB81AF0" FromRole="User" ToRole="Draft" />
+    <NavigationProperty Name="Role" Relationship="MasWusModel.FK__User__RoleId__38996AB5" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Replies" Relationship="MasWusModel.FK__Reply__userID__628FA481" FromRole="User" ToRole="Reply" />
+    <NavigationProperty Name="Threads" Relationship="MasWusModel.FK__Thread__UserId__403A8C7D" FromRole="User" ToRole="Thread" />
+    <NavigationProperty Name="UpVoteValidations" Relationship="MasWusModel.FK__UpVoteVal__userI__70DDC3D8" FromRole="User" ToRole="UpVoteValidation" />
+  </EntityType>
+  <Association Name="FK__Draft__UserId__4AB81AF0">
+    <End Type="MasWusModel.User" Role="User" Multiplicity="1" />
+    <End Type="MasWusModel.Draft" Role="Draft" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Draft">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User__RoleId__38996AB5">
+    <End Type="MasWusModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="MasWusModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Reply">
+    <Key>
+      <PropertyRef Name="replyID" />
+    </Key>
+    <Property Name="replyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="threadID" Type="Int32" Nullable="false" />
+    <Property Name="replyDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Thread" Relationship="MasWusModel.FK__Reply__threadID__6383C8BA" FromRole="Reply" ToRole="Thread" />
+    <NavigationProperty Name="User" Relationship="MasWusModel.FK__Reply__userID__628FA481" FromRole="Reply" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Thread">
+    <Key>
+      <PropertyRef Name="ThreadId" />
+    </Key>
+    <Property Name="ThreadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ThreadTitle" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ThreadDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ThreadDateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ThreadUpVote" Type="Int32" Nullable="false" />
+    <Property Name="ThreadView" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="MasWusModel.FK__Thread__Category__3F466844" FromRole="Thread" ToRole="Category" />
+    <NavigationProperty Name="Replies" Relationship="MasWusModel.FK__Reply__threadID__6383C8BA" FromRole="Thread" ToRole="Reply" />
+    <NavigationProperty Name="User" Relationship="MasWusModel.FK__Thread__UserId__403A8C7D" FromRole="Thread" ToRole="User" />
+    <NavigationProperty Name="ThreadImages" Relationship="MasWusModel.FK__ThreadIma__Threa__4316F928" FromRole="Thread" ToRole="ThreadImage" />
+    <NavigationProperty Name="UpVoteValidations" Relationship="MasWusModel.FK__UpVoteVal__Threa__6FE99F9F" FromRole="Thread" ToRole="UpVoteValidation" />
+  </EntityType>
+  <Association Name="FK__Thread__Category__3F466844">
+    <End Type="MasWusModel.Category" Role="Category" Multiplicity="1" />
+    <End Type="MasWusModel.Thread" Role="Thread" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Thread">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reply__threadID__6383C8BA">
+    <End Type="MasWusModel.Thread" Role="Thread" Multiplicity="1" />
+    <End Type="MasWusModel.Reply" Role="Reply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thread">
+        <PropertyRef Name="ThreadId" />
+      </Principal>
+      <Dependent Role="Reply">
+        <PropertyRef Name="threadID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reply__userID__628FA481">
+    <End Type="MasWusModel.User" Role="User" Multiplicity="1" />
+    <End Type="MasWusModel.Reply" Role="Reply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Reply">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Thread__UserId__403A8C7D">
+    <End Type="MasWusModel.User" Role="User" Multiplicity="1" />
+    <End Type="MasWusModel.Thread" Role="Thread" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Thread">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ThreadIma__Threa__4316F928">
+    <End Type="MasWusModel.Thread" Role="Thread" Multiplicity="1" />
+    <End Type="MasWusModel.ThreadImage" Role="ThreadImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thread">
+        <PropertyRef Name="ThreadId" />
+      </Principal>
+      <Dependent Role="ThreadImage">
+        <PropertyRef Name="ThreadId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UpVoteValidation">
+    <Key>
+      <PropertyRef Name="ValidationID" />
+    </Key>
+    <Property Name="ValidationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ThreadID" Type="Int32" Nullable="false" />
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Int32" />
+    <NavigationProperty Name="Thread" Relationship="MasWusModel.FK__UpVoteVal__Threa__6FE99F9F" FromRole="UpVoteValidation" ToRole="Thread" />
+    <NavigationProperty Name="User" Relationship="MasWusModel.FK__UpVoteVal__userI__70DDC3D8" FromRole="UpVoteValidation" ToRole="User" />
+  </EntityType>
+  <Association Name="FK__UpVoteVal__Threa__6FE99F9F">
+    <End Type="MasWusModel.Thread" Role="Thread" Multiplicity="1" />
+    <End Type="MasWusModel.UpVoteValidation" Role="UpVoteValidation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thread">
+        <PropertyRef Name="ThreadId" />
+      </Principal>
+      <Dependent Role="UpVoteValidation">
+        <PropertyRef Name="ThreadID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UpVoteVal__userI__70DDC3D8">
+    <End Type="MasWusModel.User" Role="User" Multiplicity="1" />
+    <End Type="MasWusModel.UpVoteValidation" Role="UpVoteValidation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UpVoteValidation">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

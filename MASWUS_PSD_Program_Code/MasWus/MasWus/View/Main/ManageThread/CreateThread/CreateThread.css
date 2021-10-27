@@ -1,0 +1,126 @@
+﻿#content {
+    display: flex;
+    justify-content:center;
+}
+
+#input {
+    margin-top: 5vh;
+    margin-right: 2vw;
+    width: 40vw;
+    background-color: white;
+}
+
+#container {
+    background-color: rgb(240, 240, 240);
+    height: 90vh;
+}
+
+#content-choose {
+    margin-top: 5vh;
+    margin-right: 2vw;
+    width: 20vw;
+    height: 100%;
+}
+
+.user {
+    padding: 1vh 1vw 1vh 1vw;
+}
+
+.title-input {
+    border-top: 1px solid rgb(210, 210, 210);
+    border-bottom: 1px solid rgb(210, 210, 210);
+    padding: 1vh 1vw 1vh 1vw;
+}
+
+#threadTitle {
+    font-size: 20px;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.description-input {
+    padding: 1vh 1vw 1vh 1vw;
+    border-bottom: 1px solid rgb(210, 210, 210);
+}
+
+.header {
+    padding: 2vh 2vw 2vh 2vw;
+    border-bottom: 1px solid rgb(210, 210, 210);
+}
+
+.draft-item {
+    font-size: 16px;
+    padding: 1vh 1vw 1vh 1vw;
+}
+
+#draft {
+    background-color: white;
+}
+
+#submit-container {
+    margin-top: 2vh;
+    background-color: white;
+}
+
+.header-category {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.category-choose {
+    margin-top: 1vh;
+}
+
+.category-menu {
+    border-bottom: 1px solid rgb(210, 210, 210);
+    width: 100%;
+    padding: 1vh 1vw 1vh 1vw;
+}
+
+.button-choose{
+    align-items: center;
+    text-align: center;
+    padding-bottom: 2vh;
+}
+
+.post {
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-left: 5px;
+}
+
+textarea {
+    resize: none;
+}
+
+
+.form-control{
+    border: none;
+}
+
+.upload-image {
+    margin: 2vh 2vw 2vh 2vw;
+}
+
+.error-message{
+    padding-bottom: 2vh;
+    text-align: center;
+    color: red;
+}
+
+.draft-item {
+    border-top: 1px solid rgb(210, 210, 210);
+    border-bottom: 1px solid rgb(210, 210, 210);
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.draft{
+    width: 100%;
+}
+
+.draft-item:hover {
+    cursor: pointer;
+}
